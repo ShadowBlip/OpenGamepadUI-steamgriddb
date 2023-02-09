@@ -40,7 +40,7 @@ func get_boxart(item: LibraryItem, kind: LAYOUT) -> Texture2D:
 	if game_id < 0:
 		logger.debug("Unable to find result for: " + item.name)
 		return null
-	
+
 	# Fetch based on the kind of boxart
 	# NOTE: returns the first found image, for now
 	var url := ""
@@ -69,9 +69,9 @@ func get_boxart(item: LibraryItem, kind: LAYOUT) -> Texture2D:
 					return null
 				var entry := data[0] as Dictionary
 				url = entry["url"] as String
-	
+
 	if url != "":
-		return await http_image_fetcher.fetch(url, Cache.FLAGS.LOAD|Cache.FLAGS.SAVE)
+		return await http_image_fetcher.fetch(url, Cache.FLAGS.LOAD | Cache.FLAGS.SAVE)
 
 	return null
 
@@ -89,7 +89,7 @@ func _get_game_id_from_search(search_result: Dictionary) -> int:
 
 
 # Query any SteamGridDB API
-func _query(query: String, caching_flags: int = Cache.FLAGS.LOAD|Cache.FLAGS.SAVE) -> Dictionary:
+func _query(query: String, caching_flags: int = Cache.FLAGS.LOAD | Cache.FLAGS.SAVE) -> Dictionary:
 	# Make the request
 	var response := await _api_client.request(query, caching_flags) as HTTPAPIClient.Response
 	if response == null:
@@ -98,7 +98,7 @@ func _query(query: String, caching_flags: int = Cache.FLAGS.LOAD|Cache.FLAGS.SAV
 	if response.result != OK:
 		logger.debug("Got error response for " + query + ": " + str(response.result))
 		return {}
-	var data := response.get_json()
+	var data = response.get_json()
 	if response.code != 200:
 		logger.debug("Got non-200 HTTP response for " + query + ": " + str(response.code))
 		if data != null:
@@ -110,7 +110,7 @@ func _query(query: String, caching_flags: int = Cache.FLAGS.LOAD|Cache.FLAGS.SAV
 
 # Search for games using the given library item name
 func _search(item: LibraryItem) -> Dictionary:
-	var query := "/search/autocomplete/"+item.name
+	var query := "/search/autocomplete/" + item.name
 	var response := await _query(query) as Dictionary
 	return response
 
@@ -119,18 +119,18 @@ func _get_grids(game_id: int, kind: LAYOUT) -> Dictionary:
 	var params := "?dimensions=600x900"
 	if kind == LAYOUT.GRID_LANDSCAPE:
 		params = "?dimensions=920x430"
-	var query := "/grids/game/"+str(game_id)+params
+	var query := "/grids/game/" + str(game_id) + params
 	var response := await _query(query) as Dictionary
 	return response
 
 
 func _get_heroes(game_id: int):
-	var query := "/heroes/game/"+str(game_id)
+	var query := "/heroes/game/" + str(game_id)
 	var response := await _query(query) as Dictionary
 	return response
 
 
 func _get_logos(game_id: int):
-	var query := "/logos/game/"+str(game_id)
+	var query := "/logos/game/" + str(game_id)
 	var response := await _query(query) as Dictionary
 	return response
