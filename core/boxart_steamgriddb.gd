@@ -3,6 +3,10 @@ extends BoxArtProvider
 const base_url := "https://www.steamgriddb.com/api/v2"
 const cache_folder := "steamgriddb"
 
+var NotificationManager := (
+	load("res://core/global/notification_manager.tres") as NotificationManager
+)
+var SettingsManager := load("res://core/global/settings_manager.tres") as SettingsManager
 @onready var _api_key: String = SettingsManager.get_value("plugin.steamgriddb", "api_key", "")
 @onready var _api_client := $SteamGridApiClient as HTTPAPIClient
 @onready var http_image_fetcher := $HTTPImageFetcher as HTTPImageFetcher

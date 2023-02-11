@@ -1,5 +1,6 @@
 extends Control
 
+var SettingsManager := load("res://core/global/settings_manager.tres") as SettingsManager
 @onready var text_edit: LineEdit = $VBoxContainer/HBoxContainer/LineEdit
 @onready var _api_key: String = SettingsManager.get_value("plugin.steamgriddb", "api_key", "")
 
