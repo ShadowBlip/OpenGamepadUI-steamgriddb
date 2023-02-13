@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dcomw84f3qxbs"]
+[gd_scene load_steps=3 format=3 uid="uid://dcomw84f3qxbs"]
 
 [ext_resource type="Script" path="res://plugins/steamgriddb/core/settings_menu.gd" id="1_mjkwe"]
+[ext_resource type="PackedScene" uid="uid://d1rjdfxxrdccf" path="res://core/ui/components/text_input.tscn" id="2_ox6uo"]
 
 [node name="SteamGridDBSettings" type="Control"]
 layout_mode = 3
@@ -21,19 +22,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="TextInput" parent="VBoxContainer" instance=ExtResource("2_ox6uo")]
+unique_name_in_owner = true
 layout_mode = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "API Key"
-
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-placeholder_text = "Enter Key"
-expand_to_text_length = true
-
-[connection signal="focus_exited" from="VBoxContainer/HBoxContainer/LineEdit" to="." method="_on_line_edit_focus_exited"]
-[connection signal="text_submitted" from="VBoxContainer/HBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]
+title = "API Key"
+description = "Key from steamgriddb.com"
+placeholder_text = "Enter key"
