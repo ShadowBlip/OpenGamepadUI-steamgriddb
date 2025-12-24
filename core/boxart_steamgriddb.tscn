@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://devjvyesqd4yj"]
 
-[ext_resource type="Script" path="res://plugins/steamgriddb/core/boxart_steamgriddb.gd" id="1_os27e"]
-[ext_resource type="Script" path="res://core/systems/network/http_api_client.gd" id="2_meva1"]
-[ext_resource type="Script" path="res://core/systems/network/http_image_fetcher.gd" id="3_p1gv8"]
+[ext_resource type="Script" uid="uid://xpwv0g6xb6uk" path="res://plugins/steamgriddb/core/boxart_steamgriddb.gd" id="1_os27e"]
+[ext_resource type="Script" uid="uid://c2j3qph2e6v1q" path="res://core/systems/network/http_api_client.gd" id="2_meva1"]
+[ext_resource type="Script" uid="uid://dcyv3gppht5v7" path="res://core/systems/network/http_image_fetcher.gd" id="3_p1gv8"]
 
 [node name="BoxArtSteamGridDB" type="Node"]
 script = ExtResource("1_os27e")

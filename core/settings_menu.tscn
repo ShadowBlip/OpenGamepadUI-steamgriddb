@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dcomw84f3qxbs"]
 
-[ext_resource type="Script" path="res://plugins/steamgriddb/core/settings_menu.gd" id="1_mjkwe"]
+[ext_resource type="Script" uid="uid://bi5pryvt7me4h" path="res://plugins/steamgriddb/core/settings_menu.gd" id="1_mjkwe"]
 [ext_resource type="PackedScene" uid="uid://d1rjdfxxrdccf" path="res://core/ui/components/text_input.tscn" id="2_ox6uo"]
 
 [node name="SteamGridDBSettings" type="Control"]

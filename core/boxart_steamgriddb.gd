@@ -3,11 +3,11 @@ extends BoxArtProvider
 const base_url := "https://www.steamgriddb.com/api/v2"
 const cache_folder := "steamgriddb"
 
-var NotificationManager := (
+var notification_manager := (
 	load("res://core/global/notification_manager.tres") as NotificationManager
 )
-var SettingsManager := load("res://core/global/settings_manager.tres") as SettingsManager
-@onready var _api_key: String = SettingsManager.get_value("plugin.steamgriddb", "api_key", "")
+var settings_manager := load("res://core/global/settings_manager.tres") as SettingsManager
+@onready var _api_key: String = settings_manager.get_value("plugin.steamgriddb", "api_key", "")
 @onready var _api_client := $SteamGridApiClient as HTTPAPIClient
 @onready var http_image_fetcher := $HTTPImageFetcher as HTTPImageFetcher
 
@@ -15,12 +15,12 @@ var SettingsManager := load("res://core/global/settings_manager.tres") as Settin
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if _api_key == "":
-		NotificationManager.show(Notification.new("SteamGridDB API Key required"))
+		notification_manager.show(Notification.new("SteamGridDB API Key required"))
 		return
 	_api_client.cache_folder = cache_folder
 	_api_client.base_url = base_url
 	_api_client.headers = ["Authorization: Bearer " + _api_key]
-	SettingsManager.setting_changed.connect(_on_setting_changed)
+	settings_manager.setting_changed.connect(_on_setting_changed)
 
 
 func _on_setting_changed(section: String, key: String, value: Variant) -> void:
